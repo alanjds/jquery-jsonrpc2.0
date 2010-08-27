@@ -78,8 +78,6 @@
       type : 'POST',
       dataFilter: function(data, type) {
         if (debug && console != undefined) console.info(data);
-        if (data == '')
-          return ''
         return JSON.parse(data);
       },
       processData : false,
@@ -103,12 +101,19 @@
       ajaxopts['timeout'] = data.timeout
     }
     
-    $.ajax(ajaxopts);
-
+    if (typeof $.jsonrpc.ajaxqueue == 'string'){ // user defined an ajaxManager queue?
+      // add my request to the defined queue
+      $.manageAjax.add($.jsonrpc.ajaxmanager, ajaxopts);
+    }else{
+      // use stock jQuery ajax
+      $.ajax(ajaxopts)
+    }
+    
     return $;
   }
   
   $.jsonrpc.defaultUrl = $.jsonrpc.defaultUrl || '/jsonrpc/'
-
+  $.jsonrpc.ajaxqueue = $.jsonrpc.ajaxqueue || false // If using ajaxManager3 plugin, change to queuename
+  
 })(jQuery);
 
