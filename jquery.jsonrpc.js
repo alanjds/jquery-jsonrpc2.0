@@ -72,7 +72,7 @@
     debug = debug || false
 
     var ajaxopts = {
-      url : $.jsonrpc.defaultUrl,
+      url : url,
       contentType : 'application/json',
       dataType : 'json',
       type : 'POST',
