@@ -125,7 +125,7 @@
         }
       },
       error : function(xhr, status, error) {
-        if (debug){ console.error(error) }
+        if (debug){ console.error(error || '<json-rpc call failed>') }
         if (error === 'timeout') {
           callbacks.fault({
             code : 0,
