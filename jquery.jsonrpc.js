@@ -25,7 +25,7 @@
  * Examples:
  *   // A RPC call with named parameters
  *   $.jsonrpc({
- *     url : '/rpc', 
+ *     url : '/rpc',
  *     method : 'createUser',
  *     params : {name : 'John Smith', userId : '1000'}
  *   }, {
@@ -37,16 +37,16 @@
  *     }
  *   });
  *
- *   // A Notification 
+ *   // A Notification
  *   $.jsonrpc({
- *     url : '/rpc', 
+ *     url : '/rpc',
  *     method : 'notify',
  *     params : {action : 'logout', userId : '1000'}
  *   });
  *
  *   // A Notification using console to debug and with timeout set
  *   $.jsonrpc({
- *     url : '/rpc', 
+ *     url : '/rpc',
  *     method : 'notify',
  *     params : {action : 'logout', userId : '1000'},
  *     debug : true,
@@ -73,10 +73,10 @@
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  */
 (function($) {
-   
+
   var rpcid = 1,
       emptyFn = function(){};
-   
+
   $.jsonrpc = $.jsonrpc || function(data, callbacks, debug) {
     debug = debug || false;
 
@@ -88,7 +88,7 @@
     if (callbacks) {
       postdata.id = data.id || rpcid++;
     } else {
-      callbacks = emptyFn; 
+      callbacks = emptyFn;
     }
 
     if (typeof(callbacks) === 'function') {
@@ -103,7 +103,7 @@
     var ajaxopts = {
       url : data.url || $.jsonrpc.defaultUrl,
       contentType : 'application/json',
-      dataType : 'text', 
+      dataType : 'text',
       dataFilter : function(data, type) {
         if (dataFilter) {
           return dataFilter(data);
@@ -153,7 +153,7 @@
 
     return $;
   }
-  
+
   $.jsonrpc.defaultUrl = $.jsonrpc.defaultUrl || '/jsonrpc/'
 
 })(jQuery);
