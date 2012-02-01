@@ -115,7 +115,10 @@
       processData : false,
       data : JSON.stringify(postdata),
       success : function(resp) {
-        if (debug){ console.debug(resp) }
+        if (debug){
+          try{ console.debug(resp) }
+          catch(err){}
+        }
         if (resp && !resp.error) {
           return callbacks.success && callbacks.success(resp.result);
         } else if (resp && resp.error) {
@@ -125,7 +128,10 @@
         }
       },
       error : function(xhr, status, error) {
-        if (debug){ console.error(error || '<json-rpc call failed>') }
+        if (debug){
+          try{ console.error(error || '<json-rpc call failed>') }
+          catch(err){}
+        }
         if (error === 'timeout') {
           callbacks.fault({
             code : 0,
